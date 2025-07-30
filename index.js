@@ -89,7 +89,7 @@ app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res)
 
             console.log(amount, currency, userId);
 
-            await axios.post(`https://docstant-cnhrfqh8fnajc6gj.canadacentral-01.azurewebsites.net/api/Coinbase/${userId}`);
+            await axios.put(`https://docstant-cnhrfqh8fnajc6gj.canadacentral-01.azurewebsites.net/api/Coinbase/${userId}`);
         }
 
         res.sendStatus(200)

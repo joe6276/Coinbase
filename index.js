@@ -73,6 +73,10 @@ app.post("/checkout", async (req, res) => {
 })
 
 
+app.get("/", (req,res)=>{
+    return res.status(200).send("<h1> Hello there </h1>")
+})
+
 app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res) => {
     try {
 

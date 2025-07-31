@@ -20,6 +20,7 @@ app.use(express.json({
 }))
 
 
+
 const Client = coinbase.Client
 const resources = coinbase.resources
 const webhook = coinbase.Webhook
@@ -28,16 +29,16 @@ const webhook = coinbase.Webhook
 Client.init(process.env.COINBASE_API_KEY)
 
 app.post("/checkout", async (req, res) => {
-
+  
+    
     const { amount, currency, diagnosisId, redirect_url, cancel_url } = req.body
-
 
     const response = await axios.post("https://docstant-cnhrfqh8fnajc6gj.canadacentral-01.azurewebsites.net/api/Coinbase",
 
         {
-            "diagnosisId": "29db31f3-ff53-4506-6750-08ddba5952bf",
-            "amount": 1,
-            "currency": "USD"
+            "diagnosisId": diagnosisId,
+            "amount": amount,
+            "currency": currency
         }
     );
 

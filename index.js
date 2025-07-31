@@ -101,7 +101,7 @@ app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res)
 })
 
 
-app.listen(3000, () => {
-    console.log("Server is Running on 3000");
+app.listen(process.env.PORT, () => {
+    console.log("Server is Running on "+process.env.PORT);
 
 })

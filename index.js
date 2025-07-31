@@ -90,15 +90,17 @@ app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res)
 
             let amount = event.data.pricing.local.amount
             let currency = event.data.pricing.local.currency
-            let userId = event.data.metadata.user_id
+            let userId = event.data.metadata.user_id || "9"
 
             console.log(amount, currency, userId);
 
-            await axios.put(`https://docstant-cnhrfqh8fnajc6gj.canadacentral-01.azurewebsites.net/api/Coinbase/${userId}`);
-        }
+
+                // await axios.put(`https://docstant-cnhrfqh8fnajc6gj.canadacentral-01.azurewebsites.net/api/Coinbase/${userId}`);
+        
+    
 
         res.sendStatus(200)
-
+        }
     } catch (error) {
         res.status(500).json(error)
     }

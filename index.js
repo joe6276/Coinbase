@@ -1,9 +1,8 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const axios = require("axios")
-
-
 const coinbase = require("coinbase-commerce-node")
+const { sendMail } = require("./Email")
 
 dotenv.config()
 
@@ -103,6 +102,13 @@ app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res)
         }
     } catch (error) {
         res.status(500).json(error)
+
+        await sendMail(
+           ` <p>
+                ${error}
+            </p>`
+        )
+
     }
 })
 

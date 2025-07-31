@@ -73,7 +73,7 @@ app.post("/checkout", async (req, res) => {
 
 
 app.get("/test", (req,res)=>{
-    return res.status(200).send("<h1> Hello there </h1>")
+    return res.status(200).send("<h1> Hello there Again</h1>")
 })
 
 app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res) => {
@@ -89,7 +89,7 @@ app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res)
 
             let amount = event.data.pricing.local.amount
             let currency = event.data.pricing.local.currency
-            let userId = event.data.metadata.user_id || "9"
+            let userId = event.data.metadata.user_id ? event.data.metadata.user_id  :'5'
 
             console.log(amount, currency, userId);
 

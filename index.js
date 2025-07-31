@@ -2,6 +2,7 @@ const express = require("express")
 const dotenv = require("dotenv")
 const axios = require("axios")
 const coinbase = require("coinbase-commerce-node")
+const cors = require("cors")
 const { sendMail } = require("./Email")
 
 dotenv.config()
@@ -18,7 +19,7 @@ app.use(express.json({
     }
 }))
 
-
+app.use(cors())
 
 const Client = coinbase.Client
 const resources = coinbase.resources
@@ -73,7 +74,7 @@ app.post("/checkout", async (req, res) => {
 
 
 app.get("/test", (req,res)=>{
-    return res.status(200).send("<h1> Hello there Again</h1>")
+    return res.status(200).send("<h1> Hello there !</h1>")
 })
 
 app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res) => {

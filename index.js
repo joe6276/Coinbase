@@ -31,14 +31,14 @@ Client.init(process.env.COINBASE_API_KEY)
 app.post("/checkout", async (req, res) => {
   
     
-    const { amount, currency, diagnosisId, redirect_url, cancel_url } = req.body
+    const { amount, currency, companyId, redirect_url, cancel_url } = req.body
 
     const response = await axios.post("https://docstant-cnhrfqh8fnajc6gj.canadacentral-01.azurewebsites.net/api/Coinbase",
 
         {
-            "diagnosisId": diagnosisId,
             "amount": amount,
-            "currency": currency
+            "currency": currency,
+            "companyId":companyId
         }
     );
 
@@ -90,13 +90,15 @@ app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res)
 
             let amount = event.data.pricing.local.amount
             let currency = event.data.pricing.local.currency
-            let userId = event.data.metadata.user_id ? event.data.metadata.user_id  :'5'
+            let userId = event.data.metadata.user_id ? event.data.metadata.user_id  :'18'
 
             console.log(amount, currency, userId);
 
 
-        await axios.put(`https://docstant-cnhrfqh8fnajc6gj.canadacentral-01.azurewebsites.net/api/Coinbase/${userId}`);
+       const response= await axios.put(`https://docstant-cnhrfqh8fnajc6gj.canadacentral-01.azurewebsites.net/api/Coinbase/${userId}`);
         
+    //    console.log(response);
+       
     
 
         res.sendStatus(200)

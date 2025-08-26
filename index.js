@@ -48,8 +48,8 @@ app.post("/checkout", async (req, res) => {
     try {
 
         const charge = await resources.Charge.create({
-            name: "Test Charge",
-            description: "Test Description",
+            name: "Pay for Subscription",
+            description: "Docstant Subscription Cost",
             local_price: {
                 amount: amount,
                 currency: currency
@@ -74,7 +74,7 @@ app.post("/checkout", async (req, res) => {
 
 
 app.get("/test", (req,res)=>{
-    return res.status(200).send("<h1> Hello there !</h1>")
+    return res.status(200).send("<h1> Hello there !!!</h1>")
 })
 
 app.post("/webhook", express.raw({ type: 'application/json' }), async (req, res) => {
